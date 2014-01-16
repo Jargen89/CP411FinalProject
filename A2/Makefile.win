@@ -1,0 +1,48 @@
+# Project: Project1
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = a2_private.res
+OBJ  = a2_templete.o CCube.o CShape.o CMatrix.o CWorld.o CSphere.o $(RES)
+LINKOBJ  = a2_templete.o CCube.o CShape.o CMatrix.o CWorld.o CSphere.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/include/GL" -lglut32 -lglu32 -lopengl32 -lwinmm -lgdi32   
+INCS = 
+CXXINCS = 
+BIN  = a2.exe
+CXXFLAGS = $(CXXINCS)   -fno-access-control
+CFLAGS = $(INCS)   -fno-access-control
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before a2.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "a2.exe" $(LIBS)
+
+a2_templete.o: a2_templete.cpp
+	$(CPP) -c a2_templete.cpp -o a2_templete.o $(CXXFLAGS)
+
+CCube.o: CCube.cpp
+	$(CPP) -c CCube.cpp -o CCube.o $(CXXFLAGS)
+
+CShape.o: CShape.cpp
+	$(CPP) -c CShape.cpp -o CShape.o $(CXXFLAGS)
+
+CMatrix.o: CMatrix.cpp
+	$(CPP) -c CMatrix.cpp -o CMatrix.o $(CXXFLAGS)
+
+CWorld.o: CWorld.cpp
+	$(CPP) -c CWorld.cpp -o CWorld.o $(CXXFLAGS)
+
+CSphere.o: CSphere.cpp
+	$(CPP) -c CSphere.cpp -o CSphere.o $(CXXFLAGS)
+
+a2_private.res: a2_private.rc 
+	$(WINDRES) -i a2_private.rc --input-format=rc -o a2_private.res -O coff 
